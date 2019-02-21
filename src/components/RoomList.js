@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 class RoomList extends Component {
@@ -9,10 +10,9 @@ class RoomList extends Component {
             newRoomName: ''
           };
     }
-   
+
     handleChange(event) {
-        this.setState({newRoomName: event.target.value});
-        
+        this.setState({newRoomName: event.target.value});    
     }
 
     handleSubmit(event) {
@@ -37,12 +37,13 @@ class RoomList extends Component {
                 <h1>Bloc Chat</h1>
                 {
                 this.state.rooms.map( (rooms) => 
-                <p>{rooms.name}</p>  )             
+                <button onClick={ () => this.props.handleClickroom(rooms.name, rooms.key)}>{rooms.name}</button>  )             
                 }
-                <form onSubmit={ (event) => this.handleSubmit(event) }>
+                <form onSubmit={ (event) => this.handleSubmit(event) }> 
                 <input type="text" value={this.state.newRoomName} onChange={ (event) => this.handleChange(event)} />
                 <input type="submit" value="Submit" />
                 </form>
+                
                 </div>
             );
         }
