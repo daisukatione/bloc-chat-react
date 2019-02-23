@@ -16,9 +16,9 @@ class Name extends Component {
 
     componentDidMount() {
         this.props.firebase.auth().onAuthStateChanged( (user) => {
-            if (user) {
                 this.props.setUser(user);
-            }
+
+            
           });
     }
 
