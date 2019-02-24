@@ -37,7 +37,7 @@ render() {
         <div>
         <h2>{this.props.activeroom}</h2>
         {
-        this.state.messages.filter( message => message.roomId == this.props.activeroomkey).map( (messages) => 
+        this.state.messages.filter( message => message.roomId !== "").filter( message => message.roomId == this.props.activeroomkey).map( (messages) => 
         <div>
         <h4>{messages.username}</h4>
         <p>{messages.content}</p>

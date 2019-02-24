@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Name extends Component {
+class User extends Component {
     constructor(props) {
         super(props);
     }
@@ -27,12 +27,12 @@ class Name extends Component {
                 <div>
                     <button onClick={ () => this.signIn()}>Sign-in</button>  
                     <button onClick={ () => this.signOut()}>Sign-out</button>  
-                    <h2>
-                    {this.props.user.displayName}
-                    </h2>
+                    <p>
+                    Signed in as <b>{this.props.user.emailverified ? "Guest" : this.props.user.displayName}</b>
+                    </p>
                 </div>
                 );
             }
         }     
 
-export default Name;
+export default User;

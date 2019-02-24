@@ -7,7 +7,8 @@ class RoomList extends Component {
         this.roomsRef = this.props.firebase.database().ref('rooms');
         this.state = {
             rooms: [],
-            newRoomName: ''
+            newRoomName: '',
+            changedRoom: ''
           };
     }
 
@@ -15,12 +16,19 @@ class RoomList extends Component {
         this.setState({newRoomName: event.target.value});    
     }
 
+    roomChange(event) {
+        this.setState({changedRoom: event.target.value});    
+    }
+
     handleSubmit(event) {
-        alert('New room added:' + this.state.newRoomName);
         this.roomsRef.push({
             name: this.state.newRoomName
         });
         event.preventDefault();
+    }
+
+    updateRoom(event) {
+        console.log(this.state.rooms);
     }
 
     componentDidMount() {
@@ -30,6 +38,10 @@ class RoomList extends Component {
           this.setState({rooms: this.state.rooms.concat( room )})
         });
       }
+    
+    deleteRoom() {
+        this.roomsRef.child(this.props.activeroomkey).remove();
+    }
 
     render() {
         return (
@@ -41,9 +53,15 @@ class RoomList extends Component {
                 }
                 <form onSubmit={ (event) => this.handleSubmit(event) }> 
                 <input type="text" value={this.state.newRoomName} onChange={ (event) => this.handleChange(event)} />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Create Room" />
                 </form>
-                
+
+                <form onSubmit={ (event) => this.updateRoom(event) }> 
+                <input type="text" value={this.state.changedRoom} onChange={ (event) => this.roomChange(event)} />
+                <input type="submit" value="Change room name" />
+                </form>
+
+                <button onClick={ () => this.deleteRoom() }>Delete current room</button>
                 </div>
             );
         }
