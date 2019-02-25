@@ -28,7 +28,7 @@ class User extends Component {
                     <button onClick={ () => this.signIn()}>Sign-in</button>  
                     <button onClick={ () => this.signOut()}>Sign-out</button>  
                     <p>
-                    Signed in as <b>{this.props.user.emailverified ? "Guest" : this.props.user.displayName}</b>
+                    Signed in as <b>{this.props.user ? this.props.user.displayName : "Guest"}</b>
                     </p>
                 </div>
                 );
