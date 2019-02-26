@@ -37,6 +37,11 @@ class RoomList extends Component {
           room.key = snapshot.key;
           this.setState({rooms: this.state.rooms.concat( room )})
         });
+        this.roomsRef.on('child_removed', snapshot => {
+            const room = snapshot.val();
+            room.key = snapshot.key;
+            this.setState({rooms: this.state.rooms.filter(element => element.key !== room.key)})
+          });
       }
     
     deleteRoom() {

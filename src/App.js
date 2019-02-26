@@ -38,12 +38,17 @@ class App extends Component {
     this.setState({user: user});
   }
 
+  resetActiveroom(event) {
+    this.setState({activeroom: ""});
+  }
+
   render() {
     return (
       <div>
     <RoomList 
       firebase = {firebase}   
       handleClickroom = {this.handleClickroom}
+      resetActiveroom = {this.resetActiveroom}
       {...this.state}
       />    
       <MessageList
